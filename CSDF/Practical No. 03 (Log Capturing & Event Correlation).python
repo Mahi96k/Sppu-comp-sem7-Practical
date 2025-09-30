@@ -1,0 +1,18 @@
+import logging
+
+logger_obj  = logging.getLogger(__name__)
+w_handler = logging.StreamHandler()
+e_handler = logging.FileHandler('file.log')
+w_handler.setLevel(logging.WARNING)
+e_handler.setLevel(logging.ERROR)
+
+c_format = logging.Formatter('%(name)s - %(levelname)s - %(message)s')
+f_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+w_handler.setFormatter(c_format)
+e_handler.setFormatter(f_format)
+
+logger_obj.addHandler(w_handler)
+logger_obj.addHandler(e_handler)
+
+logger_obj.warning("This is a warning-message")
+logger_obj.error("This is an error message")
